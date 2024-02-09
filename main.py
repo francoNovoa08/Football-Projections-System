@@ -10,6 +10,8 @@ def new_run():
         display_stats()
     if user_input == 3:
         simple_regular_season()
+
+
 def program_info():
     info_index = int(input("Enter function to receive information: "))
     if info_index == 1:
@@ -29,6 +31,7 @@ def display_stats():
     if team_id in Team_IDs:
         team_index = Team_IDs.index(team_id)
         print(Team_data[team_index][stat])
+
 
 def simple_regular_season():
     match_ids = read_match_ids("Game_ids.txt")
@@ -54,12 +57,18 @@ def simple_regular_season():
 def read_match_ids(file_path):
     with open(file_path, "r") as file:
         return [line.strip().replace("game_2023_", "") for line in file]
+
+
 def read_team_ids(file_path):
     with open(file_path, 'r') as file:
         return [line.strip() for line in file]
+
+
 def read_scores(file_path):
     with open(file_path, 'r') as file:
         return [int(line.strip()) for line in file]
+
+
 def calculate_points(home_score, away_score):
     if home_score > away_score:
         return 3, 0  # Home team wins
@@ -67,6 +76,7 @@ def calculate_points(home_score, away_score):
         return 0, 3  # Away team wins
     else:
         return 1, 1  # Match is a draw
+
 
 def build_team_stats(match_ids, home_ids, away_ids, home_scores, away_scores):
     team_stats = {}
@@ -96,6 +106,8 @@ def build_team_stats(match_ids, home_ids, away_ids, home_scores, away_scores):
         team_stats[away_id]['points'] += away_points
 
     return team_stats
+
+
 def print_ranking(team_stats):
     sorted_teams = sorted(team_stats.items(), key=lambda x: x[1]['points'], reverse=True)
 
@@ -103,6 +115,8 @@ def print_ranking(team_stats):
     for rank, (team_id, stats) in enumerate(sorted_teams, start=1):
         print(f"{rank}. Team ID: {team_id}, Points: {stats['points']}, Wins: {stats['wins']}, Draws: {stats['draws']}, Losses: {stats['losses']}")
 # ------------------------------------------------------
+
+
 def display_team_head_to_head_stats(team_stats, team_id_1, team_id_2):
     # Initialize counters for team 1 and team 2
     team_1_wins = team_2_wins = team_1_draws = team_2_draws = team_1_losses = team_2_losses = 0
@@ -125,6 +139,8 @@ def display_team_head_to_head_stats(team_stats, team_id_1, team_id_2):
     print(f"Team {team_id_1}: Points - "+str(team_1_points)+f", Wins - {team_1_wins}, Draws - {team_1_draws}, Losses - {team_1_losses}")
     print(f"Team {team_id_2}: Points - "+str(team_2_points)+f", Wins - {team_2_wins}, Draws - {team_2_draws}, Losses - {team_2_losses}")
 # ------------------------------------------------------
+
+
 def display_exclusive_team_head_to_head_stats(match_ids, home_ids, away_ids, team_stats, team_id_1, team_id_2):
     # Initialize counters for team 1 and team 2
     team_1_wins = team_2_wins = team_1_draws = team_2_draws = team_1_losses = team_2_losses = 0
@@ -149,6 +165,7 @@ def display_exclusive_team_head_to_head_stats(match_ids, home_ids, away_ids, tea
                 update_counters(result, team_2_wins, team_2_draws, team_2_losses)
     print("Match IDs for head-to-head matches:", ', '.join(head_to_head_match_ids))
 
+
 def determine_result(team_stats, home_team_id, away_team_id):
     if team_stats[home_team_id]['points'] > team_stats[away_team_id]['points']:
         return 'win'
@@ -156,6 +173,7 @@ def determine_result(team_stats, home_team_id, away_team_id):
         return 'loss'
     else:
         return 'draw'
+
 
 def update_counters(result, wins_counter, draws_counter, losses_counter):
     if result == 'win':
@@ -165,6 +183,8 @@ def update_counters(result, wins_counter, draws_counter, losses_counter):
     else:
         losses_counter += 1
 #------------------------------------------------------
+
+
 def get_input(prompt, input_type=int):
     while True:
         try:
@@ -177,6 +197,8 @@ def get_input(prompt, input_type=int):
 #------------------------------------------------------
 #Team_id = [city, state, conference, timezone_UTC, name]
 #city[0], state[1], conference[2], timezone_UTC[3, name[4]
+
+
 Team_IDs = ["ALB", "ANC", "AUG", "BAK", "BOI", "CHM", "DES", "DOV", "EUG", "FAR", "FOR", "JAC",
             "LAR", "LEX", "LRO", "MAN", "MOB", "OAK", "PRO", "REN", "SAS", "SFS", "SJU", "SPOR",
             "TAC", "TOL", "TUC", "WIC"]
