@@ -20,7 +20,7 @@ Here's what the program can do from the provided competition data
 Program started to provide an automated method of ranking teams based on wins, losses and draws on the almost 500 regular season games. 
 Created lists of team ID's and their stats, and later created text files including data from the regular season. This data was later imported and 
 utilised to rank teams. Additional processes where created by which a user can compare two teams and find match ID's with two given team ID's
-to greater employ the text files. At first, the program accounted for only winning, losing and drawing; however, both the funcitonality for a simlpe ranking and a complex one (accounting for even more variables of performance) are available.  
+to greater employ the text files. At first, the program accounted for only winning, losing and drawing; however, both the funcitonality for a simple ranking and a complex one (accounting for even more variables of performance) are available.  
 
 
 
