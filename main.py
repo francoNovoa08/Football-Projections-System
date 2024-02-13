@@ -25,7 +25,8 @@ def program_info():
             "(0 points)/draw (1 point). Ranking and stat. available\n"
             "ranking - Display a ranking of teams based on wins, losses, and draws\n"
             "Head-to-head stats - Compare two teams based on wins, losses, and draws\n"
-            "team match finder - Find match ids of games between 2 teams")
+            "team match finder - Find match ids of games between 2 teams\n"
+            "conference_ranking - Ranking separated by conference (west and east)")
     elif info == 4:
         print(
             "complex_regular_season - Access data of the regular season accounting for all variables")
@@ -42,7 +43,8 @@ def display_stats():
 
 def simple_regular_season():
     team_stats = build_team_stats(match_ids, home_ids, away_ids, home_scores, away_scores)
-    index = get_input("Enter index (ranking = 0, head-to-head stats = 1, team_match_finder = 2): ")
+    index = get_input("Enter index (ranking = 0, head-to-head stats = 1, team_match_finder = 2\n"
+                      "conference_ranking = 3): ")
     if index == 0:
         print_ranking(team_stats)
     elif index == 1:
@@ -53,6 +55,27 @@ def simple_regular_season():
         team1 = str(input("Enter first team ID: "))
         team2 = str(input("Enter second team ID: "))
         display_exclusive_team_head_to_head_stats(match_ids, home_ids, away_ids, team_stats, team1, team2)
+    elif index == 3:
+        west_teams, east_teams = conference_ranking()
+        west_stats = {team: team_stats[team] for team in west_teams}
+        east_stats = {team: team_stats[team] for team in east_teams}
+        print("West stats: ")
+        print_ranking(west_stats)
+        print("\nEast Stats:")
+        print_ranking(east_stats)
+
+# ------------------------------------------------------
+
+
+def conference_ranking():
+    west_teams = []
+    east_teams = []
+    for items in range(len(Team_IDs)):
+        if Team_data[items][2] == "W":
+            west_teams.append(Team_IDs[items])
+        elif Team_data[items][2] == "E":
+            east_teams.append(Team_IDs[items])
+    return west_teams, east_teams
 
 
 # ------------------------------------------------------
@@ -334,7 +357,7 @@ def calculate_ToP(home_ToP):
 
 
 Team_IDs = ["ALB", "ANC", "AUG", "BAK", "BOI", "CHM", "DES", "DOV", "EUG", "FAR", "FOR", "JAC",
-            "LAR", "LEX", "LRO", "MAN", "MOB", "OAK", "PRO", "REN", "SAS", "SFS", "SJU", "SPOR",
+            "LAR", "LEX", "LRO", "MAN", "MOB", "OAK", "PRO", "REN", "SAS", "SFS", "SJU", "SPR",
             "TAC", "TOL", "TUC", "WIC"]
 Team_data = [["Albuquerque", "New Mexico", "W", "-6"],
              ["Anchorage", "Alaska", "W", "-8"],
