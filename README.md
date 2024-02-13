@@ -12,6 +12,7 @@ If unsure on how to use program, input "1".
 Here's what the program can do from the provided competition data  
 - Display stats such as: city, state, conference and timezone on command with a given team ID
 - Produce a ranking of teams based on wins, losses and draws and list them
+- Produce a ranking based on conference (west or east) of teams based on wins, losses and draws and list them
 - Compare two teams based on wins, losses and draws with two given team ID's
 - Find the match ID from the regular season with two given team ID's
 - Produce a ranking of teams based on wins, losses and draws, plus other performance statistics using a scale factor
