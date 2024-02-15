@@ -338,17 +338,19 @@ def complex_calculate_points(home_score, away_score, home_xG, away_xG,
     calculations.append(calculate_shot(home_shot, away_shot))
     calculations.append(calculate_corner(home_corner, away_corner))
     calculations.append(calculate_pk(home_pk_goal,away_pk_goal))
-    calculations.append(calculate_pk(home_pk_shot,away_pk_shot))
+    calculations.append(calculate_pk_shot(home_pk_shot,away_pk_shot))
     calculations.append(calculate_ToP(home_ToP))
     return calculations
 def calculate_xG(home_xG, away_xG):
-    return (home_xG*0.25),(away_xG*0.25)
+    return (home_xG*0.01),(away_xG*0.01)
 def calculate_shot(home_shots, away_shots):
     return (home_shots*0.1), (away_shots*0.1)
 def calculate_corner(home_corner, away_corner):
-    return(home_corner*0.2), (away_corner*0.2)
+    return(home_corner*0.1), (away_corner*0.1)
 def calculate_pk(home_pk,away_pk):
-    return(home_pk,away_pk)
+    return(home_pk*0.25,away_pk*0.25)
+def calculate_pk_shot(home_pk,away_pk):
+    return(home_pk*0.05, away_pk*0.05)
 def calculate_ToP(home_ToP):
     return (home_ToP), (1-home_ToP)
 #------------------------------------------------------
